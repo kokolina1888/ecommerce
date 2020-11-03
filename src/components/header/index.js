@@ -1,9 +1,10 @@
 import React from "react";
 import "./styles.scss";
-import { Link } from 'react-router-dom'
-import { ReactComponent as Logo } from '../../assets/crown.svg'
+import { Link } from "react-router-dom";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { auth } from "../../firebase/firebase.utils";
 
-const index = () => {
+const index = ({ currentUser }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -14,8 +15,19 @@ const index = () => {
           Shop
         </Link>
         <Link className="option" to="/contact">
-         Contact
+          Contact
         </Link>
+
+        {
+        currentUser ? (
+          <div className="option" onClick={() => auth.signOut()}>
+            SIGN OUT
+          </div>
+        ) : (
+          <Link className="option" to="/signin">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </div>
   );
