@@ -2,6 +2,7 @@ import React from "react";
 import "./styles.scss";
 
 const index = ({ item: { imageUrl, price, name, quantity } }) => {
+  
   return (
     <div className="cart-item">
       <img src={imageUrl} alt="item" />
